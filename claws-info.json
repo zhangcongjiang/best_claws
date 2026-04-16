@@ -261,7 +261,7 @@
     {
         "id": "picoclaw",
         "中文名称": "PicoClaw",
-        "是否开源": false,
+        "是否开源": true,
         "部署形态": "轻量自托管；适合边缘或小规格 VPS",
         "概览": "PicoClaw 走极简路线，适合看重本地部署、资源占用和隐私控制的团队或个人。本页提供 PicoClaw 评测、运行时体量、部署限制、适用场景与和大生态方案的取舍。",
         "优点": [
@@ -289,12 +289,20 @@
         "是否支持本地部署": true,
         "是否支持多模态大模型": null,
         "是否支持windows原生部署": null,
-        "编程语言": null,
-        "git仓库地址": null,
+        "编程语言": "Go",
+        "git仓库地址": "https://github.com/sipeed/picoclaw",
         "是否支持原生web界面": false,
         "web界面说明": "轻量设计，无独立 Web UI",
         "评分": null,
-        "许可源码说明": null
+        "许可源码说明": null,
+        "github_stars": 28182,
+        "github_forks": 4013,
+        "github_open_issues": 312,
+        "github_license": "MIT",
+        "github_created_at": "2026-02-04T12:32:35Z",
+        "github_last_pushed_at": "2026-04-16T02:53:10Z",
+        "github_release_count": 12,
+        "github_release频率": "约每周1次"
     },
     {
         "id": "maxclaw",
@@ -696,7 +704,7 @@
     {
         "id": "clawhost",
         "中文名称": "ClawHost",
-        "是否开源": false,
+        "是否开源": true,
         "部署形态": "SaaS 控制面 + 连接器；数据驻留因 SKU 而异",
         "概览": "ClawHost 面向不想自建完整平台团队的公司，主打托管控制面、多模型路由和更轻的运维负担。本页提供 ClawHost 评测、部署方式、成本结构、信任边界与适用场景判断。",
         "优点": [
@@ -722,12 +730,20 @@
         "是否支持本地部署": false,
         "是否支持多模态大模型": null,
         "是否支持windows原生部署": false,
-        "编程语言": null,
-        "git仓库地址": null,
+        "编程语言": "TypeScript",
+        "git仓库地址": "https://github.com/bfzli/clawhost",
         "评分": null,
         "许可源码说明": null,
         "是否支持原生web界面": true,
-        "web界面说明": "SaaS 控制面，自带统一 Web 管理控制台"
+        "web界面说明": "SaaS 控制面，自带统一 Web 管理控制台",
+        "github_stars": 323,
+        "github_forks": 89,
+        "github_open_issues": 0,
+        "github_license": "MIT",
+        "github_created_at": "2026-02-01T17:43:09Z",
+        "github_last_pushed_at": "2026-04-12T22:55:36Z",
+        "github_release_count": 0,
+        "github_release频率": "暂无正式 Release"
     },
     {
         "id": "coderclaw",
@@ -840,7 +856,7 @@
     {
         "id": "lightclaw",
         "中文名称": "LightClaw",
-        "是否开源": null,
+        "是否开源": true,
         "部署形态": "本地优先，强调单二进制或少依赖部署",
         "概览": "LightClaw 是本地优先、轻量化的 Claw 变体，强调单二进制、低占用和更接近日常个人设备的部署方式。本页评估它的实际适用场景、限制与和重型平台的差异。",
         "优点": [
@@ -866,12 +882,20 @@
         "是否支持本地部署": true,
         "是否支持多模态大模型": null,
         "是否支持windows原生部署": null,
-        "编程语言": null,
-        "git仓库地址": null,
+        "编程语言": "Rust",
+        "git仓库地址": "https://github.com/zofrasca/lightclaw",
         "评分": null,
-        "许可源码说明": null,
+        "许可源码说明": "源码公开，未声明许可证",
         "是否支持原生web界面": false,
-        "web界面说明": "本地优先、单二进制设计，无独立 Web UI"
+        "web界面说明": "本地优先、单二进制设计，无独立 Web UI",
+        "github_stars": 205,
+        "github_forks": 30,
+        "github_open_issues": 4,
+        "github_license": null,
+        "github_created_at": "2026-02-09T22:04:54Z",
+        "github_last_pushed_at": "2026-02-18T23:15:03Z",
+        "github_release_count": 3,
+        "github_release频率": "低频，2个月内3次"
     },
     {
         "id": "myclaw-ai",
