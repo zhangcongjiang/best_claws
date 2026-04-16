@@ -553,10 +553,11 @@
         "github_last_pushed_at": "2026-04-15",
         "github_release_count": 8,
         "github_release频率": "约5-6天/次",
-        "是否支持原生web界面": false,
-        "web界面说明": "无原生 Web UI；使用 TUI 终端界面 + 消息网关（Telegram/Discord/Slack/WhatsApp/Signal），不支持浏览器访问",
+        "是否支持原生web界面": true,
+        "web界面说明": "React 19 + Vite + Tailwind CSS 浏览器仪表板，用于管理配置、API密钥、监控会话；后端 FastAPI (端口 9119)",
         "通信渠道支持范围": [
             "CLI (TUI)",
+            "Web Dashboard",
             "Telegram",
             "Discord",
             "Slack",
