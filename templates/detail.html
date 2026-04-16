@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.get('中文名称', item.get('id')) }}{% endblock %}
+
+{% block content %}
+  <div class="breadcrumbs">
+    <a href="{{ url_for('index') }}">← 返回列表</a>
+  </div>
+
+  <section class="detail-header">
+    <div class="detail-top">
+      <img class="logo large" src="{{ item.get('logo') }}" alt="{{ item.get('中文名称', item.get('id')) }} logo" />
+      <div class="detail-title">
+        <h1>
+          {{ item.get('中文名称', item.get('id')) }}
+          {% if item.get('是否虚拟名称') %}
+            <span class="badge virtual">虚拟名称</span>
+          {% endif %}
+        </h1>
+        <div class="muted">ID：{{ item.get('id') }}</div>
+        <div class="muted">供应商：{{ vendor_for(item, vendor_map) or '—' }}</div>
+      </div>
+    </div>
+
+    <div class="detail-badges">
+      <span class="badge">开源：{{ format_tri_state(item.get('是否开源')) }}</span>
+      <span class="badge">本地部署：{{ format_tri_state(item.get('是否支持本地部署')) }}</span>
+      <span class="badge">多模态：{{ format_tri_state(item.get('是否支持多模态大模型')) }}</span>
+      <span class="badge">Windows 原生：{{ format_tri_state(item.get('是否支持windows原生部署')) }}</span>
+      <span class="badge">Web 界面：{{ format_tri_state(item.get('是否支持原生web界面')) }}</span>
+    </div>
+
+    <div class="detail-meta">
+      <div class="meta-item">
+        <span class="meta-k">编程语言</span>
+        <span class="meta-v">{{ item.get('编程语言') or '—' }}</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-k">Git 仓库</span>
+        <span class="meta-v">
+          {% if item.get('git仓库地址') %}
+            <a href="{{ item.get('git仓库地址') }}" target="_blank" rel="noreferrer">{{ item.get('git仓库地址') }}</a>
+          {% else %}
+            —
+          {% endif %}
+        </span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-k">许可证</span>
+        <span class="meta-v">{{ item.get('github_license') or item.get('许可源码说明') or '—' }}</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-k">Web 界面说明</span>
+        <span class="meta-v">{{ item.get('web界面说明') or '—' }}</span>
+      </div>
+    </div>
+
+    <div class="detail-actions">
+      <a class="btn" href="{{ url_for('edit', claw_id=item['id']) }}">编辑</a>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <h2>概览</h2>
+    <p class="prose">{{ item.get('概览') }}</p>
+  </section>
+
+  <section class="detail-section grid-2">
+    <div>
+      <h2>优点</h2>
+      <ul class="list">
+        {% for v in item.get('优点', []) %}
+          <li>{{ v }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2>缺点</h2>
+      <ul class="list">
+        {% for v in item.get('缺点', []) %}
+          <li>{{ v }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <h2>能力维度</h2>
+    <div class="kv-grid">
+      <div class="kv"><div class="k">部署形态</div><div class="v">{{ item.get('部署形态') }}</div></div>
+      <div class="kv"><div class="k">部署便捷性</div><div class="v">{{ item.get('部署便捷性') }}</div></div>
+      <div class="kv"><div class="k">扩展性</div><div class="v">{{ item.get('扩展性') }}</div></div>
+      <div class="kv"><div class="k">安全性</div><div class="v">{{ item.get('安全性') }}</div></div>
+      <div class="kv"><div class="k">生态成熟度</div><div class="v">{{ item.get('生态成熟度') }}</div></div>
+      <div class="kv"><div class="k">可玩性</div><div class="v">{{ item.get('可玩性') }}</div></div>
+      <div class="kv"><div class="k">维护成本</div><div class="v">{{ item.get('维护成本') }}</div></div>
+    </div>
+  </section>
+
+  {% if item.get('git仓库地址') %}
+  <section class="detail-section">
+    <h2>GitHub 仓库数据</h2>
+    <div class="kv-grid gh-stats">
+      <div class="kv">
+        <div class="k">Stars</div>
+        <div class="v gh-num">{{ format_number(item.get('github_stars')) }}</div>
+      </div>
+      <div class="kv">
+        <div class="k">Forks</div>
+        <div class="v gh-num">{{ format_number(item.get('github_forks')) }}</div>
+      </div>
+      <div class="kv">
+        <div class="k">Open Issues</div>
+        <div class="v gh-num">{{ format_number(item.get('github_open_issues')) }}</div>
+      </div>
+      <div class="kv">
+        <div class="k">许可证</div>
+        <div class="v">{{ item.get('github_license') or '—' }}</div>
+      </div>
+      <div class="kv">
+        <div class="k">首次提交</div>
+        <div class="v">{{ (item.get('github_created_at') or '—')[:10] }}</div>
+      </div>
+      <div class="kv">
+        <div class="k">最近推送</div>
+        <div class="v">{{ (item.get('github_last_pushed_at') or '—')[:10] }}</div>
+      </div>
+      <div class="kv">
+        <div class="k">Release 数量 / 频率</div>
+        <div class="v">{{ item.get('github_release_count') if item.get('github_release_count') is not none else '—' }}{% if item.get('github_release频率') %}<span class="gh-freq">（{{ item.get('github_release频率') }}）</span>{% endif %}</div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="detail-section">
+    <h2>大模型支持范围</h2>
+    <div class="kv-grid">
+      <div class="kv">
+        <div class="k">支持的模型/平台</div>
+        <div class="v">
+          {% set models = item.get('大模型支持范围', []) %}
+          {% if models and (models | length) > 0 %}
+            <div class="chips">
+              {% for m in models %}
+                <span class="chip">{{ m }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            —
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

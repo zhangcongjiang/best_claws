@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Claws 列表{% endblock %}
+
+{% block content %}
+  <section class="page-header">
+    <h1>Claws 列表</h1>
+    <div class="muted">共 {{ total }} 条，筛选后 {{ count }} 条</div>
+  </section>
+
+  <form class="filters" method="get" action="{{ url_for('index') }}">
+    <div class="filters-grid">
+      {% for spec in filter_specs %}
+        <label class="filter">
+          <span class="filter-label">{{ spec.label }}</span>
+          <select name="{{ spec.query_param }}">
+            <option value="all" {% if filters[spec.query_param] == 'all' %}selected{% endif %}>全部</option>
+            <option value="true" {% if filters[spec.query_param] == 'true' %}selected{% endif %}>是</option>
+            <option value="false" {% if filters[spec.query_param] == 'false' %}selected{% endif %}>否</option>
+            {% if spec.query_param == 'windows' %}
+              <option value="wsl2" {% if filters[spec.query_param] == 'wsl2' %}selected{% endif %}>WSL2</option>
+            {% endif %}
+            <option value="unknown" {% if filters[spec.query_param] == 'unknown' %}selected{% endif %}>未知</option>
+          </select>
+        </label>
+      {% endfor %}
+    </div>
+
+    <div class="filters-actions">
+      <button class="btn" type="submit">应用筛选</button>
+      <a class="btn secondary" href="{{ url_for('index') }}">重置</a>
+    </div>
+  </form>
+
+  <section class="table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th class="col-logo">Logo</th>
+          <th class="col-name">名称</th>
+          <th class="col-vendor">供应商</th>
+          <th class="col-stars">Stars</th>
+          <th>是否开源</th>
+          <th>支持本地部署</th>
+          <th>Windows 原生</th>
+          <th>Web 界面</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td class="col-logo">
+              <img class="logo table" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3C/svg%3E" data-src="{{ item.get('logo') }}" alt="{{ item.get('中文名称', item.get('id')) }} logo" loading="lazy" decoding="async" fetchpriority="low" width="36" height="36" />
+            </td>
+            <td class="col-name">
+              <div class="name">
+                <a class="name-link" href="{{ url_for('detail', claw_id=item['id']) }}">{{ item.get('中文名称', item.get('id')) }}</a>
+              </div>
+              <div class="sub">
+                <span class="muted">{{ item.get('id') }}</span>
+                {% if item.get('是否虚拟名称') %}
+                  <span class="status virtual mini">虚拟</span>
+                {% endif %}
+              </div>
+            </td>
+            <td class="col-vendor">
+              {{ vendor_for(item, vendor_map) or '—' }}
+            </td>
+            <td class="col-stars">
+              {% if item.get('github_stars') is not none %}
+                <span class="stars-num">{{ format_number(item.get('github_stars')) }}</span>
+              {% else %}
+                —
+              {% endif %}
+            </td>
+            <td>
+              <span class="status {{ tri_state_class(item.get('是否开源')) }}">{{ format_tri_state(item.get('是否开源')) }}</span>
+            </td>
+            <td>
+              <span class="status {{ tri_state_class(item.get('是否支持本地部署')) }}">{{ format_tri_state(item.get('是否支持本地部署')) }}</span>
+            </td>
+            <td>
+              <span class="status {{ tri_state_class(item.get('是否支持windows原生部署')) }}">{{ format_tri_state(item.get('是否支持windows原生部署')) }}</span>
+            </td>
+            <td>
+              <span class="status {{ tri_state_class(item.get('是否支持原生web界面')) }}">{{ format_tri_state(item.get('是否支持原生web界面')) }}</span>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

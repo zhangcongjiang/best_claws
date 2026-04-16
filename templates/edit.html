@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}编辑：{{ item.get('中文名称', item.get('id')) }}{% endblock %}
+
+{% block content %}
+  <div class="breadcrumbs">
+    <a href="{{ url_for('detail', claw_id=item['id']) }}">← 返回详情</a>
+  </div>
+
+  <section class="detail-header">
+    <div class="detail-top">
+      <img class="logo large" src="{{ item.get('logo') }}" alt="{{ item.get('中文名称', item.get('id')) }} logo" />
+      <div class="detail-title">
+        <h1>编辑：{{ item.get('中文名称', item.get('id')) }}</h1>
+        <div class="muted">ID：{{ item.get('id') }}</div>
+      </div>
+    </div>
+  </section>
+
+  <form class="edit-form" method="post" accept-charset="utf-8" action="{{ url_for('save_edit', claw_id=item['id']) }}">
+    <section class="detail-section">
+      <h2>基础信息</h2>
+      <div class="form-grid">
+        <label class="field">
+          <span class="filter-label">中文名称</span>
+          <input name="中文名称" value="{{ item.get('中文名称', '') }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">供应商</span>
+          <input name="供应商" value="{{ item.get('供应商') or vendor_for(item, vendor_map) or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">Logo URL</span>
+          <input name="logo" value="{{ item.get('logo') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">编程语言</span>
+          <input name="编程语言" value="{{ item.get('编程语言') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">Git 仓库地址</span>
+          <input name="git仓库地址" value="{{ item.get('git仓库地址') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">Web 界面说明</span>
+          <input name="web界面说明" value="{{ item.get('web界面说明') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">许可证</span>
+          <input name="github_license" value="{{ item.get('github_license') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">许可/源码说明</span>
+          <input name="许可源码说明" value="{{ item.get('许可源码说明') or '' }}" />
+        </label>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>能力标记</h2>
+      <div class="form-grid">
+        <label class="field">
+          <span class="filter-label">是否开源</span>
+          <select name="是否开源">
+            <option value="unknown" {% if item.get('是否开源') is none %}selected{% endif %}>未知</option>
+            <option value="true" {% if item.get('是否开源') is true %}selected{% endif %}>是</option>
+            <option value="false" {% if item.get('是否开源') is false %}selected{% endif %}>否</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="filter-label">是否支持本地部署</span>
+          <select name="是否支持本地部署">
+            <option value="unknown" {% if item.get('是否支持本地部署') is none %}selected{% endif %}>未知</option>
+            <option value="true" {% if item.get('是否支持本地部署') is true %}selected{% endif %}>是</option>
+            <option value="false" {% if item.get('是否支持本地部署') is false %}selected{% endif %}>否</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="filter-label">是否支持多模态大模型</span>
+          <select name="是否支持多模态大模型">
+            <option value="unknown" {% if item.get('是否支持多模态大模型') is none %}selected{% endif %}>未知</option>
+            <option value="true" {% if item.get('是否支持多模态大模型') is true %}selected{% endif %}>是</option>
+            <option value="false" {% if item.get('是否支持多模态大模型') is false %}selected{% endif %}>否</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="filter-label">是否支持Windows原生部署</span>
+          <select name="是否支持windows原生部署">
+            <option value="unknown" {% if item.get('是否支持windows原生部署') is none %}selected{% endif %}>未知</option>
+            <option value="true" {% if item.get('是否支持windows原生部署') is true %}selected{% endif %}>是</option>
+            <option value="false" {% if item.get('是否支持windows原生部署') is false %}selected{% endif %}>否</option>
+            <option value="wsl2" {% if item.get('是否支持windows原生部署') == 'wsl2' %}selected{% endif %}>WSL2</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="filter-label">是否支持原生 Web 界面</span>
+          <select name="是否支持原生web界面">
+            <option value="unknown" {% if item.get('是否支持原生web界面') is none %}selected{% endif %}>未知</option>
+            <option value="true" {% if item.get('是否支持原生web界面') is true %}selected{% endif %}>是</option>
+            <option value="false" {% if item.get('是否支持原生web界面') is false %}selected{% endif %}>否</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="filter-label">是否虚拟名称</span>
+          <select name="是否虚拟名称">
+            <option value="unknown" {% if item.get('是否虚拟名称') is none %}selected{% endif %}>未知</option>
+            <option value="true" {% if item.get('是否虚拟名称') is true %}selected{% endif %}>是</option>
+            <option value="false" {% if item.get('是否虚拟名称') is false %}selected{% endif %}>否</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>GitHub 仓库数据</h2>
+      <div class="form-grid">
+        <label class="field">
+          <span class="filter-label">Stars</span>
+          <input type="number" name="github_stars" value="{{ item.get('github_stars') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">Forks</span>
+          <input type="number" name="github_forks" value="{{ item.get('github_forks') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">Open Issues</span>
+          <input type="number" name="github_open_issues" value="{{ item.get('github_open_issues') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">Release 数量</span>
+          <input type="number" name="github_release_count" value="{{ item.get('github_release_count') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">首次提交日期</span>
+          <input name="github_created_at" value="{{ item.get('github_created_at') or '' }}" />
+        </label>
+        <label class="field">
+          <span class="filter-label">最近推送日期</span>
+          <input name="github_last_pushed_at" value="{{ item.get('github_last_pushed_at') or '' }}" />
+        </label>
+        <label class="field full">
+          <span class="filter-label">发布频率</span>
+          <input name="github_release频率" value="{{ item.get('github_release频率') or '' }}" />
+        </label>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>描述与维度</h2>
+      <div class="form-grid">
+        <label class="field full">
+          <span class="filter-label">部署形态</span>
+          <textarea name="部署形态" rows="2">{{ item.get('部署形态') or '' }}</textarea>
+        </label>
+        <label class="field full">
+          <span class="filter-label">概览</span>
+          <textarea name="概览" rows="3">{{ item.get('概览') or '' }}</textarea>
+        </label>
+        <label class="field full">
+          <span class="filter-label">部署便捷性</span>
+          <textarea name="部署便捷性" rows="2">{{ item.get('部署便捷性') or '' }}</textarea>
+        </label>
+        <label class="field full">
+          <span class="filter-label">扩展性</span>
+          <textarea name="扩展性" rows="2">{{ item.get('扩展性') or '' }}</textarea>
+        </label>
+        <label class="field full">
+          <span class="filter-label">安全性</span>
+          <textarea name="安全性" rows="2">{{ item.get('安全性') or '' }}</textarea>
+        </label>
+        <label class="field full">
+          <span class="filter-label">生态成熟度</span>
+          <textarea name="生态成熟度" rows="2">{{ item.get('生态成熟度') or '' }}</textarea>
+        </label>
+        <label class="field full">
+          <span class="filter-label">可玩性</span>
+          <textarea name="可玩性" rows="2">{{ item.get('可玩性') or '' }}</textarea>
+        </label>
+        <label class="field full">
+          <span class="filter-label">维护成本</span>
+          <textarea name="维护成本" rows="2">{{ item.get('维护成本') or '' }}</textarea>
+        </label>
+      </div>
+    </section>
+
+    <section class="detail-section grid-2">
+      <div>
+        <h2>优点（每行一条）</h2>
+        <textarea name="优点" rows="8">{% for v in item.get('优点', []) %}{{ v }}{% if not loop.last %}{{ '\n' }}{% endif %}{% endfor %}</textarea>
+      </div>
+      <div>
+        <h2>缺点（每行一条）</h2>
+        <textarea name="缺点" rows="8">{% for v in item.get('缺点', []) %}{{ v }}{% if not loop.last %}{{ '\n' }}{% endif %}{% endfor %}</textarea>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>大模型支持范围（每行一条）</h2>
+      <textarea name="大模型支持范围" rows="6">{% for v in item.get('大模型支持范围', []) %}{{ v }}{% if not loop.last %}{{ '\n' }}{% endif %}{% endfor %}</textarea>
+    </section>
+
+    <div class="filters-actions">
+      <button class="btn" type="submit">保存并返回详情</button>
+      <a class="btn secondary" href="{{ url_for('detail', claw_id=item['id']) }}">取消</a>
+    </div>
+  </form>
+{% endblock %}
