@@ -134,11 +134,11 @@
   {% endif %}
 
   <section class="detail-section">
-    <h2>大模型支持范围</h2>
-    <div class="kv-grid">
-      <div class="kv">
-        <div class="k">支持的模型/平台</div>
-        <div class="v">
+    <h2>支持范围</h2>
+    <div class="support-grid">
+      <div class="support-col">
+        <div class="support-col-title">大模型支持</div>
+        <div class="support-col-body">
           {% set models = item.get('大模型支持范围', []) %}
           {% if models and (models | length) > 0 %}
             <div class="chips">
@@ -147,7 +147,22 @@
               {% endfor %}
             </div>
           {% else %}
-            —
+            <span class="muted">—</span>
+          {% endif %}
+        </div>
+      </div>
+      <div class="support-col">
+        <div class="support-col-title">通信渠道</div>
+        <div class="support-col-body">
+          {% set channels = item.get('通信渠道支持范围', []) %}
+          {% if channels and (channels | length) > 0 %}
+            <div class="chips">
+              {% for c in channels %}
+                <span class="chip channel">{{ c }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            <span class="muted">—</span>
           {% endif %}
         </div>
       </div>

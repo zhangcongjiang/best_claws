@@ -598,3 +598,40 @@ textarea {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
+
+/* Support grid — left/right layout for models & channels */
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .support-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.support-col {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(11, 18, 32, 0.45);
+}
+
+.support-col-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.support-col-body {
+  min-height: 32px;
+}
+
+.chip.channel {
+  border-color: rgba(168, 85, 247, 0.35);
+  color: rgba(192, 132, 252, 0.95);
+  background: rgba(168, 85, 247, 0.08);
+}

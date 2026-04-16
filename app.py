@@ -518,6 +518,7 @@ def create_app() -> Flask:
         set_str("可玩性", "可玩性")
         set_str("维护成本", "维护成本")
         set_list("大模型支持范围", "大模型支持范围")
+        set_list("通信渠道支持范围", "通信渠道支持范围")
 
         updated = store.update(claw_id, updates)
         if updated is None:

@@ -46,6 +46,7 @@
         "是否支持windows原生部署": "wsl2",
         "编程语言": "TypeScript",
         "git仓库地址": "https://github.com/openclaw/openclaw",
+        "logo":"https://bestclaw.io/images/claw-platforms/openclaw.png",
         "供应商": "openclaw (GitHub Organization)",
         "github_stars": 357919,
         "github_forks": 72732,
@@ -56,7 +57,31 @@
         "github_release_count": 30,
         "github_release频率": "约1-2天/次",
         "是否支持原生web界面": true,
-        "web界面说明": "内置 Control UI + WebChat，由 Gateway 直接提供 Web 服务"
+        "web界面说明": "内置 Control UI + WebChat，由 Gateway 直接提供 Web 服务",
+        "通信渠道支持范围": [
+            "WhatsApp",
+            "Telegram",
+            "Slack",
+            "Discord",
+            "Google Chat",
+            "Signal",
+            "iMessage",
+            "BlueBubbles",
+            "IRC",
+            "Microsoft Teams",
+            "Matrix",
+            "Feishu (飞书)",
+            "LINE",
+            "Mattermost",
+            "Nextcloud Talk",
+            "Nostr",
+            "Synology Chat",
+            "Twitch",
+            "Zalo",
+            "WeChat (微信)",
+            "QQ",
+            "WebChat"
+        ]
     },
     {
         "id": "nanoclaw",
@@ -105,7 +130,16 @@
         "github_release_count": 0,
         "github_release频率": "无正式 release",
         "是否支持原生web界面": false,
-        "web界面说明": "README 明确说明 No monitoring dashboard，无 Web UI，通过 CLI 和 Claude Code 交互"
+        "web界面说明": "README 明确说明 No monitoring dashboard，无 Web UI，通过 CLI 和 Claude Code 交互",
+        "通信渠道支持范围": [
+            "WhatsApp",
+            "Telegram",
+            "Discord",
+            "Slack",
+            "Gmail",
+            "Signal (via skill)",
+            "CLI"
+        ]
     },
     {
         "id": "openclaw-launch",
@@ -199,7 +233,31 @@
         "github_release_count": 12,
         "github_release频率": "约1周/次",
         "是否支持原生web界面": true,
-        "web界面说明": "React 19 + Vite Web Dashboard，含实时聊天、记忆浏览器、配置编辑器、Cron 管理器和工具检查器，由 Gateway 直接提供"
+        "web界面说明": "React 19 + Vite Web Dashboard，含实时聊天、记忆浏览器、配置编辑器、Cron 管理器和工具检查器，由 Gateway 直接提供",
+        "通信渠道支持范围": [
+            "WhatsApp",
+            "Telegram",
+            "Slack",
+            "Discord",
+            "Signal",
+            "iMessage",
+            "Matrix",
+            "IRC",
+            "Email",
+            "Bluesky",
+            "Nostr",
+            "Mattermost",
+            "Nextcloud Talk",
+            "DingTalk (钉钉)",
+            "Lark (飞书)",
+            "QQ",
+            "Reddit",
+            "LinkedIn",
+            "Twitter/X",
+            "MQTT",
+            "WeChat Work (企业微信)",
+            "WebSocket"
+        ]
     },
     {
         "id": "picoclaw",
@@ -395,7 +453,19 @@
         "github_release_count": 10,
         "github_release频率": "约2-4天/次",
         "是否支持原生web界面": false,
-        "web界面说明": "Electron 桌面应用（React 18 前端），非独立 Web 服务；内部有 Vite dev server 但不作为独立 Web UI 对外提供"
+        "web界面说明": "Electron 桌面应用（React 18 前端），非独立 Web 服务；内部有 Vite dev server 但不作为独立 Web UI 对外提供",
+        "通信渠道支持范围": [
+            "WeChat (微信)",
+            "WeCom (企业微信)",
+            "DingTalk (钉钉)",
+            "Feishu (飞书)",
+            "QQ",
+            "Telegram",
+            "Discord",
+            "NetEase Bee (网易蜂)",
+            "NetEase POPO (网易泡泡)",
+            "Desktop (Electron)"
+        ]
     },
     {
         "id": "duclaw",
@@ -482,7 +552,17 @@
         "github_release_count": 8,
         "github_release频率": "约5-6天/次",
         "是否支持原生web界面": false,
-        "web界面说明": "无原生 Web UI；使用 TUI 终端界面 + 消息网关（Telegram/Discord/Slack/WhatsApp/Signal），不支持浏览器访问"
+        "web界面说明": "无原生 Web UI；使用 TUI 终端界面 + 消息网关（Telegram/Discord/Slack/WhatsApp/Signal），不支持浏览器访问",
+        "通信渠道支持范围": [
+            "CLI (TUI)",
+            "Telegram",
+            "Discord",
+            "Slack",
+            "WhatsApp",
+            "Signal",
+            "Email",
+            "Home Assistant"
+        ]
     },
     {
         "id": "autoclaw",
@@ -575,7 +655,14 @@
         "github_release_count": 3,
         "github_release频率": "约1-2月/次",
         "是否支持原生web界面": true,
-        "web界面说明": "基于 Wails (Go + WebView) 框架，Vue 3 前端，支持 Server 模式部署（无 GUI，通过浏览器访问）"
+        "web界面说明": "基于 Wails (Go + WebView) 框架，Vue 3 前端，支持 Server 模式部署（无 GUI，通过浏览器访问）",
+        "通信渠道支持范围": [
+            "WeChat (微信)",
+            "QQ",
+            "WhatsApp",
+            "Desktop (Wails/WebView)",
+            "Server Mode (浏览器)"
+        ]
     },
     {
         "id": "clawapp",
