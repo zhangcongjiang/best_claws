@@ -378,10 +378,17 @@ def create_app() -> Flask:
 
     @app.get("/")
     def index() -> str:
-        filters: dict[str, FilterValue] = {
-            spec.query_param: parse_filter_value(request.args.get(spec.query_param))
-            for spec in FILTERS
-        }
+        # 默认筛选：是否开源 = true
+        raw_oss = request.args.get("oss")
+        if raw_oss is None or raw_oss == "":
+            raw_oss = "true"
+
+        filters: dict[str, FilterValue] = {}
+        for spec in FILTERS:
+            if spec.query_param == "oss":
+                filters[spec.query_param] = parse_filter_value(raw_oss)
+            else:
+                filters[spec.query_param] = parse_filter_value(request.args.get(spec.query_param))
 
         items = store.all()
         filtered: list[ClawRecord] = []
@@ -396,12 +403,13 @@ def create_app() -> Flask:
         vendor_map = vendor_resolver.get_map()
         score_map = score_resolver.get_map()
 
-        filtered.sort(
-            key=lambda x: (
-                -(score_for(x, score_map) or -1.0),
-                x.get("中文名称", x.get("id", "")),
-            )
-        )
+        # 排序：开源项目按 stars 降序排在前面，闭源/未知排在后面
+        def sort_key(x: ClawRecord) -> tuple[int, int]:
+            is_oss = 0 if x.get("是否开源") is True else 1  # 开源=0 排前面
+            stars = x.get("github_stars") or 0
+            return (is_oss, -stars)  # stars 降序
+
+        filtered.sort(key=sort_key)
 
         return render_template(
             "list.html",
