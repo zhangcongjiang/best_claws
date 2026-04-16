@@ -149,6 +149,10 @@
           <textarea name="概览" rows="3">{{ item.get('概览') or '' }}</textarea>
         </label>
         <label class="field full">
+          <span class="filter-label">试用感受</span>
+          <textarea name="试用感受" rows="4" placeholder="可在此记录你的实际使用体验...">{{ item.get('试用感受') or '' }}</textarea>
+        </label>
+        <label class="field full">
           <span class="filter-label">部署便捷性</span>
           <textarea name="部署便捷性" rows="2">{{ item.get('部署便捷性') or '' }}</textarea>
         </label>

@@ -62,6 +62,13 @@
     <p class="prose">{{ item.get('概览') }}</p>
   </section>
 
+  {% if item.get('试用感受') %}
+  <section class="detail-section">
+    <h2>试用感受</h2>
+    <p class="prose">{{ item.get('试用感受') }}</p>
+  </section>
+  {% endif %}
+
   <section class="detail-section grid-2">
     <div>
       <h2>优点</h2>

@@ -1,4 +1,4 @@
-[
+﻿[
     {
         "id": "openclaw",
         "中文名称": "OpenClaw",
@@ -564,7 +564,9 @@
             "Signal",
             "Email",
             "Home Assistant"
-        ]
+        ],
+        "许可源码说明": null,
+        "试用感受": "hermes最核心的功能就是自学习能力，可以基于用户的输入不断的更新skills，潜移默化的完成学习训练"
     },
     {
         "id": "autoclaw",

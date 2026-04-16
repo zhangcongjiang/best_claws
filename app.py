@@ -49,6 +49,8 @@ class ClawRecord(TypedDict, total=False):
     github_release_count: Optional[int]
     github_release频率: Optional[str]
     许可源码说明: Optional[str]
+    通信渠道支持范围: list[str]
+    试用感受: Optional[str]
 
 
 FilterValue = Literal["all", "true", "false", "unknown", "wsl2"]
@@ -525,6 +527,7 @@ def create_app() -> Flask:
         set_str("维护成本", "维护成本")
         set_list("大模型支持范围", "大模型支持范围")
         set_list("通信渠道支持范围", "通信渠道支持范围")
+        set_str("试用感受", "试用感受")
 
         updated = store.update(claw_id, updates)
         if updated is None:
