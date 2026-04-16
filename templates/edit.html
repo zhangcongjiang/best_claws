@@ -100,14 +100,6 @@
             <option value="false" {% if item.get('是否支持原生web界面') is false %}selected{% endif %}>否</option>
           </select>
         </label>
-        <label class="field">
-          <span class="filter-label">是否虚拟名称</span>
-          <select name="是否虚拟名称">
-            <option value="unknown" {% if item.get('是否虚拟名称') is none %}selected{% endif %}>未知</option>
-            <option value="true" {% if item.get('是否虚拟名称') is true %}selected{% endif %}>是</option>
-            <option value="false" {% if item.get('是否虚拟名称') is false %}selected{% endif %}>否</option>
-          </select>
-        </label>
       </div>
     </section>
 

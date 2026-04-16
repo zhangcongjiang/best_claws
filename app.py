@@ -38,7 +38,6 @@ class ClawRecord(TypedDict, total=False):
     是否支持本地部署: Optional[bool]
     是否支持多模态大模型: Optional[bool]
     是否支持windows原生部署: WindowsSupport
-    是否虚拟名称: Optional[bool]
     是否支持原生web界面: Optional[bool]
     web界面说明: Optional[str]
     github_stars: Optional[int]
@@ -502,7 +501,6 @@ def create_app() -> Flask:
         set_opt_bool("是否支持本地部署", "是否支持本地部署")
         set_opt_bool("是否支持多模态大模型", "是否支持多模态大模型")
         set_opt_bool("是否支持原生web界面", "是否支持原生web界面")
-        set_opt_bool("是否虚拟名称", "是否虚拟名称")
         updates["是否支持windows原生部署"] = parse_windows_support(
             request.form.get("是否支持windows原生部署")
         )

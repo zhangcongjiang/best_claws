@@ -540,33 +540,6 @@ textarea {
   grid-column: 1 / -1;
 }
 
-/* Virtual name badge / pill — orange style */
-.badge.virtual {
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(251, 146, 60, 0.45);
-  color: rgba(251, 146, 60, 0.95);
-  background: rgba(251, 146, 60, 0.1);
-  vertical-align: middle;
-  margin-left: 6px;
-  font-weight: 600;
-}
-
-.status.virtual {
-  border-color: rgba(251, 146, 60, 0.35);
-  color: rgba(251, 146, 60, 0.95);
-  background: rgba(251, 146, 60, 0.08);
-}
-
-.status.virtual.mini {
-  font-size: 10px;
-  padding: 1px 6px;
-  min-width: auto;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-
 /* Stars number in table */
 .col-stars {
   min-width: 72px;

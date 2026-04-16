@@ -13,9 +13,6 @@
       <div class="detail-title">
         <h1>
           {{ item.get('中文名称', item.get('id')) }}
-          {% if item.get('是否虚拟名称') %}
-            <span class="badge virtual">虚拟名称</span>
-          {% endif %}
         </h1>
         <div class="muted">ID：{{ item.get('id') }}</div>
         <div class="muted">供应商：{{ vendor_for(item, vendor_map) or '—' }}</div>
