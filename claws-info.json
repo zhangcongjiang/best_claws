@@ -87,7 +87,7 @@
         "id": "nanoclaw",
         "中文名称": "NanoClaw",
         "是否开源": true,
-        "部署形态": "自托管为主；常见 Docker 路径；镜像与依赖面通常小于完整 OpenClaw 类栈",
+        "部署形态": "自托管：Docker 容器化部署（Linux/macOS），Agent 在容器沙箱内运行；需配合 Claude Code CLI",
         "概览": "NanoClaw 主打默认安全和轻量运行时，适合想控制攻击面、又不想背负过重基础设施的团队。本页提供 NanoClaw 评测、部署特点、安全能力、生态边界与替代方案判断。",
         "优点": [
             "当方法论安全分与内存占用是硬约束时，匹配度很高。",
@@ -108,12 +108,8 @@
         "可玩性": "中：功能精简，专注核心能力",
         "维护成本": "低：代码精简，更新频率低",
         "大模型支持范围": [
-            "Anthropic (Claude)",
-            "OpenAI (API 兼容端点)",
-            "Ollama (本地模型)",
-            "Together AI",
-            "Fireworks",
-            "自定义 Anthropic API 兼容端点"
+            "Anthropic Claude (通过 Claude Agent SDK)",
+            "支持 Claude Code OAuth Token 或 Anthropic API Key 认证"
         ],
         "logo": "https://bestclaw.io/images/claw-platforms/nanoclaw.png",
         "是否支持本地部署": true,
@@ -121,9 +117,9 @@
         "是否支持windows原生部署": null,
         "编程语言": "TypeScript",
         "git仓库地址": "https://github.com/qwibitai/nanoclaw",
-        "github_stars": 27318,
-        "github_forks": 12010,
-        "github_open_issues": 658,
+        "github_stars": 27356,
+        "github_forks": 12064,
+        "github_open_issues": 666,
         "github_license": "MIT",
         "github_created_at": "2026-01-31",
         "github_last_pushed_at": "2026-04-15",
@@ -131,6 +127,7 @@
         "github_release频率": "无正式 release",
         "是否支持原生web界面": false,
         "web界面说明": "README 明确说明 No monitoring dashboard，无 Web UI，通过 CLI 和 Claude Code 交互",
+        "供应商": "qwibitai",
         "通信渠道支持范围": [
             "WhatsApp",
             "Telegram",
